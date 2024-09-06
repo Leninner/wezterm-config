@@ -6,7 +6,6 @@ return {
    unix_domains = {
       {
          name = 'Wezterm Ubuntu',
-         default_prog = { '/usr/bin/zsh' },
       },
    },
 
