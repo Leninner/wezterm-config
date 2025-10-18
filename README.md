@@ -2,6 +2,8 @@
 
 Configuration files inspired in [KevinSilvester](https://github.com/KevinSilvester/wezterm-config/tree/master#background-images)
 
+To use, simply clone the repository in ~/.config/wezterm/
+
 ## All Key Binbdings
 
 Most of the key bindings revolve around a <kbd>SUPER</kbd> and <kbd>SUPER_REV</kbd>(super reversed) keys.<br>
