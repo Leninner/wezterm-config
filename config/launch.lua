@@ -6,7 +6,7 @@ local options = {
 }
 
 if platform.is_mac then
-   options.default_prog = { '/opt/homebrew/bin/zsh' } -- check when I move to M1
+   options.default_prog = { '/bin/zsh' }
    options.launch_menu = {
       { label = 'Bash', args = { 'bash', '-l' } },
       { label = 'Zsh', args = { 'zsh', '-l' } },
