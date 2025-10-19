@@ -5,9 +5,10 @@ local colors = require('colors.custom')
 return {
    animation_fps = 60,
    max_fps = 120,
-   front_end = 'OpenGL',
+   front_end = 'WebGpu',
    webgpu_power_preference = 'HighPerformance',
    webgpu_preferred_adapter = gpu_adapters:pick_best(),
+   enable_kitty_graphics = true,
 
    -- color scheme
    colors = colors,
@@ -47,9 +48,12 @@ return {
    window_close_confirmation = 'NeverPrompt',
    window_frame = {
       active_titlebar_bg = '#090909',
-      -- font = fonts.font,
-      -- font_size = fonts.font_size,
    },
+   window_decorations = 'RESIZE',
+   macos_window_background_blur = 30,
+   
+   native_macos_fullscreen_mode = false,
+   
    inactive_pane_hsb = {
       saturation = 0.9,
       brightness = 0.65,

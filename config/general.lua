@@ -1,11 +1,21 @@
 return {
    -- behaviours
    automatically_reload_config = true,
-   exit_behavior = 'CloseOnCleanExit', -- if the shell program exited with a successful status
+   exit_behavior = 'CloseOnCleanExit',
    exit_behavior_messaging = 'Verbose',
    status_update_interval = 1000,
 
-   scrollback_lines = 5000,
+   scrollback_lines = 10000,
+   enable_csi_u_key_encoding = true,
+   
+   adjust_window_size_when_changing_font_size = false,
+   use_dead_keys = false,
+   send_composed_key_when_left_alt_is_pressed = false,
+   send_composed_key_when_right_alt_is_pressed = false,
+   
+   set_environment_variables = {
+      PATH = '/opt/homebrew/bin:/usr/local/bin:' .. os.getenv('PATH'),
+   },
 
    hyperlink_rules = {
       -- Matches: a URL in parens: (URL)
