@@ -145,7 +145,7 @@ local keys = {
    -- resizes fonts
    {
       key = 'f',
-      mods = 'LEADER',
+      mods = platform.is_mac and 'SUPER|ALT' or 'LEADER',
       action = act.ActivateKeyTable({
          name = 'resize_font',
          one_shot = false,
@@ -155,7 +155,7 @@ local keys = {
    -- resize panes
    {
       key = 'p',
-      mods = 'LEADER',
+      mods = platform.is_mac and 'SUPER|ALT' or 'LEADER',
       action = act.ActivateKeyTable({
          name = 'resize_pane',
          one_shot = false,
@@ -184,18 +184,46 @@ local key_tables = {
 }
 
 local mouse_bindings = {
-   -- Ctrl-click will open the link under the mouse cursor
    {
       event = { Up = { streak = 1, button = 'Left' } },
       mods = 'CTRL',
       action = act.OpenLinkAtMouseCursor,
    },
+   {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'CMD',
+      action = act.OpenLinkAtMouseCursor,
+   },
+   {
+      event = { Up = { streak = 1, button = 'Left' } },
+      mods = 'SUPER',
+      action = act.OpenLinkAtMouseCursor,
+   },
 }
 
-return {
+if platform.is_mac then
+   table.insert(mouse_bindings, {
+      event = { Down = { streak = 3, button = 'Left' } },
+      mods = 'NONE',
+      action = act.SelectTextAtMouseCursor('SemanticZone'),
+   })
+   table.insert(mouse_bindings, {
+      event = { Drag = { streak = 1, button = 'Left' } },
+      mods = 'NONE',
+      action = act.StartWindowDrag,
+   })
+end
+
+local config = {
    disable_default_key_bindings = true,
-   leader = { key = 'Space', mods = mod.SUPER_REV },
+   leader = platform.is_mac and { key = 'Space', mods = 'SUPER|ALT' } or { key = 'Space', mods = mod.SUPER_REV },
    keys = keys,
    key_tables = key_tables,
    mouse_bindings = mouse_bindings,
 }
+
+if platform.is_mac then
+   config.canonicalize_pasted_newlines = 'LineFeed'
+end
+
+return config

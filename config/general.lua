@@ -1,5 +1,16 @@
+local platform = require('utils.platform')()
+
+local env_vars = {}
+if platform.is_mac then
+   env_vars = {
+      PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:' .. (os.getenv('PATH') or ''),
+      TERM = 'xterm-256color',
+      TERM_PROGRAM = 'WezTerm',
+      COLORTERM = 'truecolor',
+   }
+end
+
 return {
-   -- behaviours
    automatically_reload_config = true,
    exit_behavior = 'CloseOnCleanExit',
    exit_behavior_messaging = 'Verbose',
@@ -13,44 +24,49 @@ return {
    send_composed_key_when_left_alt_is_pressed = false,
    send_composed_key_when_right_alt_is_pressed = false,
    
-   set_environment_variables = {
-      PATH = '/opt/homebrew/bin:/usr/local/bin:' .. os.getenv('PATH'),
-   },
+   set_environment_variables = env_vars,
+
+   default_prog = platform.is_mac and { '/bin/zsh', '-l' } or nil,
+   
+   term = 'xterm-256color',
+   
+   unicode_version = 14,
+   allow_square_glyphs_to_overflow_width = 'Never',
+   
+   enable_wayland = false,
 
    hyperlink_rules = {
-      -- Matches: a URL in parens: (URL)
       {
          regex = '\\((\\w+://\\S+)\\)',
          format = '$1',
          highlight = 1,
       },
-      -- Matches: a URL in brackets: [URL]
       {
          regex = '\\[(\\w+://\\S+)\\]',
          format = '$1',
          highlight = 1,
       },
-      -- Matches: a URL in curly braces: {URL}
       {
          regex = '\\{(\\w+://\\S+)\\}',
          format = '$1',
          highlight = 1,
       },
-      -- Matches: a URL in angle brackets: <URL>
       {
          regex = '<(\\w+://\\S+)>',
          format = '$1',
          highlight = 1,
       },
-      -- Then handle URLs not wrapped in brackets
       {
          regex = '\\b\\w+://\\S+[)/a-zA-Z0-9-]+',
          format = '$0',
       },
-      -- implicit mailto link
       {
          regex = '\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b',
          format = 'mailto:$0',
+      },
+      {
+         regex = [[\b\w+://[^\s]+]],
+         format = '$0',
       },
    },
 }
