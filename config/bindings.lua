@@ -209,7 +209,7 @@ if platform.is_mac then
    })
    table.insert(mouse_bindings, {
       event = { Drag = { streak = 1, button = 'Left' } },
-      mods = 'NONE',
+      mods = 'ALT',
       action = act.StartWindowDrag,
    })
 end
