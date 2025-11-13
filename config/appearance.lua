@@ -47,14 +47,14 @@ return {
       active_titlebar_bg = '#090909',
       inactive_titlebar_bg = '#1a1a1a',
       font = wezterm.font({ family = 'MesloLGS Nerd Font', weight = 'Regular' }),
-      font_size = 11.0,
+      font_size = 16.0,
    },
    window_decorations = 'RESIZE',
-   
+
    macos_window_background_blur = 40,
-   
+
    native_macos_fullscreen_mode = true,
-   
+
    inactive_pane_hsb = {
       saturation = 0.85,
       brightness = 0.75,
