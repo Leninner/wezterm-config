@@ -190,11 +190,13 @@ En **Linux/Windows**:
 
 ### ➡️ Movimiento del Cursor
 
-| Atajo                   | Acción          |
-| ----------------------- | --------------- |
-| `⌘` + `←`               | Inicio de línea |
-| `⌘` + `→`               | Fin de línea    |
-| `⌘` + `⌃` + `Backspace` | Limpiar línea   |
+| Atajo                   | Acción                         |
+| ----------------------- | ------------------------------ |
+| `⌘` + `←`               | Inicio de línea                |
+| `⌘` + `→`               | Fin de línea                   |
+| `⌘` + `⌃` + `Backspace` | Limpiar línea                  |
+| `⌥` + `←`               | Palabra anterior (shell/nvim)  |
+| `⌥` + `→`               | Palabra siguiente (shell/nvim) |
 
 ---
 
@@ -426,6 +428,39 @@ scrollback_lines = 50000,  -- Número de líneas de historial
 1. Instala el plugin `wezterm.nvim` en Neovim
 2. Verifica que Neovim sea versión 0.10 o superior
 3. Reinicia tanto WezTerm como Neovim
+
+### Option+Arrow muestra "D" y "C"
+
+Si al presionar `⌥` + `←` o `⌥` + `→` ves las letras "D" o "C", esto ya está solucionado en la configuración. Los bindings están configurados para enviar las secuencias de escape correctas (`\x1bb` y `\x1bf`) que funcionan tanto en el shell como en nvim terminal mode.
+
+Si aún tienes problemas:
+1. Verifica que la configuración se haya recargado (`⌘` + `Shift` + `R`)
+2. En nvim terminal mode, asegúrate de tener los mappings configurados (ver sección de navegación en terminal)
+
+### Navegación en Terminal con Neovim
+
+Para usar las teclas de movimiento de nvim en el terminal, necesitas configurar nvim. El plugin `wezterm.nvim` ya está configurado para detectar cuando nvim está activo.
+
+**Opción 1: Navegación entre ventanas de nvim desde terminal mode**
+
+Agrega esto a tu configuración de nvim (`~/.config/nvim/init.lua`):
+
+```lua
+-- Navegar entre ventanas de nvim desde terminal mode
+vim.keymap.set('t', '<A-h>', '<C-\\><C-n><C-w>h', { desc = 'Move to left window' })
+vim.keymap.set('t', '<A-l>', '<C-\\><C-n><C-w>l', { desc = 'Move to right window' })
+vim.keymap.set('t', '<A-k>', '<C-\\><C-n><C-w>k', { desc = 'Move to upper window' })
+vim.keymap.set('t', '<A-j>', '<C-\\><C-n><C-w>j', { desc = 'Move to lower window' })
+```
+
+**Opción 2: Movimiento palabra por palabra en terminal (ya configurado en WezTerm)**
+
+Los bindings `⌥` + `←` y `⌥` + `→` ya están configurados en WezTerm para funcionar en el shell y en nvim terminal mode. No necesitas configuración adicional en nvim para esto.
+
+**Nota**: 
+- `Option+Arrow` funciona directamente en el terminal para movimiento palabra por palabra (como en bash/zsh)
+- Para navegar entre ventanas de nvim desde terminal mode, usa `Ctrl+w` + `h/j/k/l` o configura los mappings de arriba con `Option+h/j/k/l`
+- El plugin `wezterm.nvim` detecta automáticamente cuando nvim está activo y ajusta el comportamiento del cursor
 
 ### Rendimiento lento
 

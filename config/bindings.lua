@@ -52,6 +52,10 @@ local keys = {
    { key = 'LeftArrow',  mods = mod.SUPER,     action = act.SendString '\x1bOH' },
    { key = 'RightArrow', mods = mod.SUPER,     action = act.SendString '\x1bOF' },
    { key = 'Backspace',  mods = mod.SUPER_REV,     action = act.SendString '\x15' },
+   
+   -- Option+Arrow for word-by-word movement (shell and nvim terminal)
+   { key = 'LeftArrow',  mods = 'OPT', action = act.SendString '\x1bb' },
+   { key = 'RightArrow', mods = 'OPT', action = act.SendString '\x1bf' },
 
    -- copy/paste --
    { key = 'c',          mods = 'CTRL|SHIFT',  action = act.CopyTo('Clipboard') },
