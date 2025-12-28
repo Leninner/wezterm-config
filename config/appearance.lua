@@ -5,7 +5,7 @@ local platform = require('utils.platform')()
 
 return {
    animation_fps = 60,
-   max_fps = 144,
+   max_fps = 120,
    front_end = 'WebGpu',
    webgpu_power_preference = 'HighPerformance',
    webgpu_preferred_adapter = gpu_adapters:pick_best(),
@@ -27,7 +27,7 @@ return {
          source = { Color = colors.background },
          height = '100%',
          width = '100%',
-         opacity = 0.92,
+         opacity = 0.90,
       },
    },
 

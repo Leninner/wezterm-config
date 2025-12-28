@@ -16,7 +16,7 @@ return {
    exit_behavior_messaging = 'Verbose',
    status_update_interval = 1000,
 
-   scrollback_lines = 10000,
+   scrollback_lines = 3500,
    enable_csi_u_key_encoding = true,
    
    adjust_window_size_when_changing_font_size = false,

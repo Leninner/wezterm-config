@@ -16,46 +16,29 @@ end
 -- stylua: ignore
 local keys = {
    -- misc/useful --
-   { key = 'F1', mods = 'NONE', action = 'ActivateCopyMode' },
-   { key = 'F2', mods = 'NONE', action = act.ActivateCommandPalette },
-   { key = 'F3', mods = 'NONE', action = act.ShowLauncher },
-   { key = 'F4', mods = 'NONE', action = act.ShowLauncherArgs({ flags = 'FUZZY|TABS' }) },
+   { key = '1', mods = mod.SUPER, action = 'ActivateCopyMode' },
+   { key = '2', mods = mod.SUPER, action = act.ActivateCommandPalette },
+   { key = '3', mods = mod.SUPER, action = act.ShowLauncher },
+   { key = '4', mods = mod.SUPER, action = act.ShowLauncherArgs({ flags = 'FUZZY|TABS' }) },
    {
-      key = 'F5',
-      mods = 'NONE',
+      key = '5',
+      mods = mod.SUPER,
       action = act.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }),
    },
+
+   -- window controls --
    { key = 'F11', mods = 'NONE',    action = act.ToggleFullScreen },
    { key = 'F12', mods = 'NONE',    action = act.ShowDebugOverlay },
    { key = 'f',   mods = mod.SUPER, action = act.Search({ CaseInSensitiveString = '' }) },
-   -- {
-   --    key = 'u',
-   --    mods = mod.SUPER,
-   --    action = wezterm.action.QuickSelectArgs({
-   --       label = 'open url',
-   --       patterns = {
-   --          '\\((https?://\\S+)\\)',
-   --          '\\[(https?://\\S+)\\]',
-   --          '\\{(https?://\\S+)\\}',
-   --          '<(https?://\\S+)>',
-   --          '\\bhttps?://\\S+[)/a-zA-Z0-9-]+'
-   --       },
-   --       action = wezterm.action_callback(function(window, pane)
-   --          local url = window:get_selection_text_for_pane(pane)
-   --          wezterm.log_info('opening: ' .. url)
-   --          wezterm.open_with(url)
-   --       end),
-   --    }),
-   -- },
-   --
+   
    -- cursor movement --
    { key = 'LeftArrow',  mods = mod.SUPER,     action = act.SendString '\x1bOH' },
    { key = 'RightArrow', mods = mod.SUPER,     action = act.SendString '\x1bOF' },
-   { key = 'Backspace',  mods = mod.SUPER_REV,     action = act.SendString '\x15' },
+   { key = 'Backspace',  mods = mod.SUPER, action = act.SendString '\x15' },
    
    -- Option+Arrow for word-by-word movement (shell and nvim terminal)
-   { key = 'LeftArrow',  mods = 'OPT', action = act.SendString '\x1bb' },
-   { key = 'RightArrow', mods = 'OPT', action = act.SendString '\x1bf' },
+   { key = 'h',  mods = 'OPT', action = act.SendString '\x1bb' },
+   { key = 'l',  mods = 'OPT', action = act.SendString '\x1bf' },
 
    -- copy/paste --
    { key = 'c',          mods = 'CTRL|SHIFT',  action = act.CopyTo('Clipboard') },
@@ -149,7 +132,7 @@ local keys = {
    -- resizes fonts
    {
       key = 'f',
-      mods = platform.is_mac and 'SUPER|ALT' or 'LEADER',
+      mods = platform.is_mac and 'SUPER|ALT' or 'SUPER',
       action = act.ActivateKeyTable({
          name = 'resize_font',
          one_shot = false,
@@ -158,8 +141,8 @@ local keys = {
    },
    -- resize panes
    {
-      key = 'p',
-      mods = platform.is_mac and 'SUPER|ALT' or 'LEADER',
+      key = 'r',
+      mods = platform.is_mac and 'SUPER' or 'SUPER|ALT',
       action = act.ActivateKeyTable({
          name = 'resize_pane',
          one_shot = false,
