@@ -63,10 +63,6 @@ return {
       {
          regex = '\\b\\w+@[\\w-]+(\\.[\\w-]+)+\\b',
          format = 'mailto:$0',
-      },
-      {
-         regex = [[\b\w+://[^\s]+]],
-         format = '$0',
-      },
+      }
    },
 }
