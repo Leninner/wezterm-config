@@ -105,12 +105,12 @@ local keys = {
    {
       key = [[\]],
       mods = mod.SUPER,
-      action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
+      action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
    },
    {
       key = [[\]],
       mods = mod.SUPER_REV,
-      action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
+      action = act.SplitVertical({ domain = 'CurrentPaneDomain' }),
    },
 
    -- panes: zoom+close pane
@@ -136,7 +136,7 @@ local keys = {
       action = act.ActivateKeyTable({
          name = 'resize_font',
          one_shot = false,
-         timemout_miliseconds = 1000,
+         timeout_milliseconds = 1000,
       }),
    },
    -- resize panes
@@ -146,7 +146,7 @@ local keys = {
       action = act.ActivateKeyTable({
          name = 'resize_pane',
          one_shot = false,
-         timemout_miliseconds = 1000,
+         timeout_milliseconds = 1000,
       }),
    },
 }
@@ -161,10 +161,10 @@ local key_tables = {
       { key = 'q',      action = 'PopKeyTable' },
    },
    resize_pane = {
-      { key = 'k',      action = act.AdjustPaneSize({ 'Up', 1 }) },
-      { key = 'j',      action = act.AdjustPaneSize({ 'Down', 1 }) },
-      { key = 'h',      action = act.AdjustPaneSize({ 'Left', 1 }) },
-      { key = 'l',      action = act.AdjustPaneSize({ 'Right', 1 }) },
+      { key = 'k',      action = act.AdjustPaneSize({ 'Up', 5 }) },
+      { key = 'j',      action = act.AdjustPaneSize({ 'Down', 5 }) },
+      { key = 'h',      action = act.AdjustPaneSize({ 'Left', 5 }) },
+      { key = 'l',      action = act.AdjustPaneSize({ 'Right', 5 }) },
       { key = 'Escape', action = 'PopKeyTable' },
       { key = 'q',      action = 'PopKeyTable' },
    },

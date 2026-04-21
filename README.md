@@ -245,7 +245,7 @@ En **Linux/Windows**:
 | `⌘` + `j`       | Panel inferior                      |
 | `⌘` + `h`       | Panel izquierdo                     |
 | `⌘` + `l`       | Panel derecho                       |
-| `⌘` + `⌃` + `p` | Seleccionar panel para intercambiar |
+| `⌘` + `ctrl` + `p` | Seleccionar panel para intercambiar |
 
 **Nota**: Cuando Neovim está activo, estos atajos pasan directamente a Neovim para que uses los atajos de Neovim para dividir ventanas.
 
