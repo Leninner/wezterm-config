@@ -1,7 +1,5 @@
 local Config = require('config')
 
-require('utils.backdrops'):set_files():random()
-
 -- NOT USED - require('events.right-status').setup()
 require('events.left-status').setup()
 require('events.tab-title').setup()

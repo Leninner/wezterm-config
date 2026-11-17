@@ -46,7 +46,7 @@ local function apply_cursor_style(window, pane)
    local pane_id = pane:pane_id()
    if not is_vim(pane) then
       if last_mode[pane_id] ~= 'none' then
-         window:perform_action({ SetCursorStyle = 'BlinkingBlock' }, pane)
+         window:perform_action({ SetCursorStyle = 'SteadyBlock' }, pane)
          last_mode[pane_id] = 'none'
       end
       return
@@ -57,11 +57,11 @@ local function apply_cursor_style(window, pane)
       return
    end
 
-   local cursor_style = 'BlinkingBlock'
+   local cursor_style = 'SteadyBlock'
    if mode == 'i' or mode == 'insert' then
-      cursor_style = 'BlinkingBar'
-   elseif mode == 'R' or mode == 'replace' then
       cursor_style = 'SteadyBar'
+   elseif mode == 'R' or mode == 'replace' then
+      cursor_style = 'SteadyUnderline'
    elseif mode == 'c' or mode == 'command' then
       cursor_style = 'SteadyBlock'
    end

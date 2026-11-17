@@ -18,21 +18,21 @@ return {
 
    scrollback_lines = 3500,
    enable_csi_u_key_encoding = true,
-   
+
    adjust_window_size_when_changing_font_size = false,
    use_dead_keys = false,
    send_composed_key_when_left_alt_is_pressed = false,
    send_composed_key_when_right_alt_is_pressed = false,
-   
+
    set_environment_variables = env_vars,
 
    default_prog = platform.is_mac and { '/bin/zsh', '-l' } or nil,
-   
+
    term = 'xterm-256color',
-   
+
    unicode_version = 14,
    allow_square_glyphs_to_overflow_width = 'Never',
-   
+
    enable_wayland = false,
 
    hyperlink_rules = {
