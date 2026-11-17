@@ -5,11 +5,6 @@ local function is_vim(pane)
    return vars.IS_NVIM == 'true'
 end
 
-local function get_vim_mode(pane)
-   local vars = pane:get_user_vars()
-   return vars.VIM_MODE
-end
-
 local direction_keys = {
    Left = 'h',
    Down = 'j',
@@ -40,39 +35,6 @@ local function split_nav(resize_or_move, key)
       end),
    }
 end
-
-local last_mode = {}
-local function apply_cursor_style(window, pane)
-   local pane_id = pane:pane_id()
-   if not is_vim(pane) then
-      if last_mode[pane_id] ~= 'none' then
-         window:perform_action({ SetCursorStyle = 'SteadyBlock' }, pane)
-         last_mode[pane_id] = 'none'
-      end
-      return
-   end
-
-   local mode = get_vim_mode(pane)
-   if not mode or last_mode[pane_id] == mode then
-      return
-   end
-
-   local cursor_style = 'SteadyBlock'
-   if mode == 'i' or mode == 'insert' then
-      cursor_style = 'SteadyBar'
-   elseif mode == 'R' or mode == 'replace' then
-      cursor_style = 'SteadyUnderline'
-   elseif mode == 'c' or mode == 'command' then
-      cursor_style = 'SteadyBlock'
-   end
-
-   window:perform_action({ SetCursorStyle = cursor_style }, pane)
-   last_mode[pane_id] = mode
-end
-
-w.on('update-status', function(window, pane)
-   apply_cursor_style(window, pane)
-end)
 
 return {
    keys = {
