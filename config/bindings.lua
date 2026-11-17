@@ -60,7 +60,22 @@ local keys = {
    -- window --
    -- spawn windows
    { key = 'n',          mods = mod.SUPER,     action = act.SpawnWindow },
-   { key = 'q',          mods = mod.SUPER,     action = act.QuitApplication },
+   {
+      key = 'q',
+      mods = mod.SUPER,
+      action = act.InputSelector({
+         title = '¿Cerrar WezTerm? (se cierran todas las ventanas)',
+         choices = {
+            { id = 'no', label = 'No, cancelar' },
+            { id = 'yes', label = 'Sí, cerrar todo' },
+         },
+         action = wezterm.action_callback(function(window, _, id)
+            if id == 'yes' then
+               window:perform_action(act.QuitApplication, window:active_pane())
+            end
+         end),
+      }),
+   },
 
    -- panes --
    -- panes: split panes
